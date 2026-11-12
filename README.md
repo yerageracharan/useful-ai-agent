@@ -1,36 +1,13 @@
-# Useful AI Agent & Creator Utilities
+# Useful AI Agent
 
-A collection of practical automations and tools.
+A workspace for practical AI tooling and experiments.
 
-## Authorized YouTube → Adobe MP4 (720p)
+## Video download note
 
-A GitHub Actions workflow that prepares videos you own or are explicitly allowed to download as Adobe-friendly MP4 files.
+For downloading videos you own or are authorized to edit, use the maintained upstream project **[yt-dlp](https://github.com/yt-dlp/yt-dlp)** rather than a custom downloader implementation.
 
-**Output:** H.264/AVC video + AAC audio in an MP4 container, at a maximum of 1280×720 landscape or 720×1280 portrait. Lower-resolution sources are not upscaled.
+- Windows release: [yt-dlp.exe](https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp.exe)
+- Installation guide: [yt-dlp installation](https://github.com/yt-dlp/yt-dlp/wiki/Installation)
+- Cookie support: [yt-dlp FAQ](https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp)
 
-### Run it
-
-1. Open **Actions → Download authorized video for Adobe → Run workflow**.
-2. Paste the YouTube URL. The link supplied for this setup is prefilled.
-3. Tick the rights-confirmation checkbox.
-4. Run the workflow.
-5. When complete, download the **adobe-720p-mp4** artifact from the run. GitHub provides it as a ZIP containing the MP4.
-
-Artifacts are retained for 2 days.
-
-### Rights and access
-
-Use only videos you uploaded or have explicit permission to download and edit. The workflow does not bypass DRM, sign-in, paywalls, age gates, or other access controls. It accepts standard YouTube and youtu.be URLs only.
-
-For videos you uploaded, YouTube Studio → Content → video menu → Download is the official MP4 route. YouTube states creator uploads can be downloaded as MP4 in 720p or 360p, depending on the source. YouTube Premium offline downloads are for playback inside YouTube, not transferable MP4 files for Premiere Pro.
-
-### Run locally
-
-Install FFmpeg and Python 3.10+, then:
-
-```bash
-python -m pip install -r requirements.txt
-python scripts/download_for_adobe.py "https://youtu.be/VIDEO_ID"
-```
-
-The output is `output/adobe_720p.mp4`.
+For an Adobe-friendly MP4, pair yt-dlp with [FFmpeg](https://ffmpeg.org/). This repository intentionally does not maintain a second downloader or a cloud workflow that can be blocked by YouTube's sign-in / bot verification.
